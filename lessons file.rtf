@@ -1,0 +1,128 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red195\green123\blue90;\red19\green20\blue21;\red174\green176\blue183;
+\red185\green101\blue173;\red71\green149\blue242;\red38\green157\blue169;\red164\green160\blue78;\red89\green158\blue96;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c76471\c48235\c35294;\csgenericrgb\c7451\c7843\c8235;\csgenericrgb\c68235\c69020\c71765;
+\csgenericrgb\c72549\c39608\c67843;\csgenericrgb\c27843\c58431\c94902;\csgenericrgb\c14902\c61569\c66275;\csgenericrgb\c64314\c62745\c30588;\csgenericrgb\c34902\c61961\c37647;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs26 \cf2 \cb3 package \cf4 flcbooking;\
+\
+\cf2 import \cf4 java.util.ArrayList;\
+\
+\cf2 public class \cf4 Lesson \{\
+    \cf2 private \cf4 String \cf5 lessonId\cf4 ;\
+    \cf2 private \cf4 String \cf5 exerciseType\cf4 ;\
+    \cf2 private \cf4 String \cf5 day\cf4 ;\
+    \cf2 private \cf4 String \cf5 timeSlot\cf4 ;\
+    \cf2 private \cf4 String \cf5 month\cf4 ;\
+    \cf2 private double \cf5 price\cf4 ;\
+    \cf2 private int \cf5 capacity\cf4 ;\
+    \cf2 private \cf4 ArrayList<Member> \cf5 bookedMembers\cf4 ;\
+    \cf2 private \cf4 ArrayList<Review> \cf5 reviews\cf4 ;\
+\
+    \cf2 public \cf6 Lesson\cf4 (String lessonId, String exerciseType, String day, String timeSlot, String month, \cf2 double \cf4 price) \{\
+        \cf2 this\cf4 .\cf5 lessonId \cf4 = lessonId;\
+        \cf2 this\cf4 .\cf5 exerciseType \cf4 = exerciseType;\
+        \cf2 this\cf4 .\cf5 day \cf4 = day;\
+        \cf2 this\cf4 .\cf5 timeSlot \cf4 = timeSlot;\
+        \cf2 this\cf4 .\cf5 month \cf4 = month;\
+        \cf2 this\cf4 .\cf5 price \cf4 = price;\
+        \cf2 this\cf4 .\cf5 capacity \cf4 = \cf7 4\cf4 ;\
+        \cf2 this\cf4 .\cf5 bookedMembers \cf4 = \cf2 new \cf4 ArrayList<>();\
+        \cf2 this\cf4 .\cf5 reviews \cf4 = \cf2 new \cf4 ArrayList<>();\
+    \}\
+\
+    \cf2 public \cf4 String \cf6 getLessonId\cf4 () \{\
+        \cf2 return \cf5 lessonId\cf4 ;\
+    \}\
+\
+    \cf2 public \cf4 String \cf6 getExerciseType\cf4 () \{\
+        \cf2 return \cf5 exerciseType\cf4 ;\
+    \}\
+\
+    \cf2 public \cf4 String \cf6 getDay\cf4 () \{\
+        \cf2 return \cf5 day\cf4 ;\
+    \}\
+\
+    \cf2 public \cf4 String \cf6 getTimeSlot\cf4 () \{\
+        \cf2 return \cf5 timeSlot\cf4 ;\
+    \}\
+\
+    \cf2 public \cf4 String \cf6 getMonth\cf4 () \{\
+        \cf2 return \cf5 month\cf4 ;\
+    \}\
+\
+    \cf2 public double \cf6 getPrice\cf4 () \{\
+        \cf2 return \cf5 price\cf4 ;\
+    \}\
+\
+    \cf2 public int \cf6 getCapacity\cf4 () \{\
+        \cf2 return \cf5 capacity\cf4 ;\
+    \}\
+\
+    \cf2 public \cf4 ArrayList<Member> \cf6 getBookedMembers\cf4 () \{\
+        \cf2 return \cf5 bookedMembers\cf4 ;\
+    \}\
+\
+    \cf2 public \cf4 ArrayList<Review> \cf6 getReviews\cf4 () \{\
+        \cf2 return \cf5 reviews\cf4 ;\
+    \}\
+\
+    \cf2 public boolean \cf6 isFull\cf4 () \{\
+        \cf2 return \cf5 bookedMembers\cf4 .size() >= \cf5 capacity\cf4 ;\
+    \}\
+\
+    \cf2 public boolean \cf6 addMember\cf4 (Member member) \{\
+        \cf2 if \cf4 (isFull()) \{\
+            \cf2 return false\cf4 ;\
+        \}\
+\
+        \cf2 for \cf4 (Member bookedMember : \cf5 bookedMembers\cf4 ) \{\
+            \cf2 if \cf4 (bookedMember.getMemberId().equalsIgnoreCase(member.getMemberId())) \{\
+                \cf2 return false\cf4 ;\
+            \}\
+        \}\
+\
+        \cf5 bookedMembers\cf4 .add(member);\
+        \cf2 return true\cf4 ;\
+    \}\
+\
+    \cf2 public boolean \cf6 removeMember\cf4 (Member member) \{\
+        \cf2 for \cf4 (\cf2 int \cf4 i = \cf7 0\cf4 ; i < \cf5 bookedMembers\cf4 .size(); i++) \{\
+            \cf2 if \cf4 (\cf5 bookedMembers\cf4 .get(i).getMemberId().equalsIgnoreCase(member.getMemberId())) \{\
+                \cf5 bookedMembers\cf4 .remove(i);\
+                \cf2 return true\cf4 ;\
+            \}\
+        \}\
+        \cf2 return false\cf4 ;\
+    \}\
+\
+    \cf2 public void \cf6 addReview\cf4 (Review review) \{\
+        \cf5 reviews\cf4 .add(review);\
+    \}\
+\
+    \cf2 public double \cf6 getAverageRating\cf4 () \{\
+        \cf2 if \cf4 (\cf5 reviews\cf4 .isEmpty()) \{\
+            \cf2 return \cf7 0.0\cf4 ;\
+        \}\
+\
+        \cf2 int \cf4 total = \cf7 0\cf4 ;\
+        \cf2 for \cf4 (Review review : \cf5 reviews\cf4 ) \{\
+            total += review.getRating();\
+        \}\
+\
+        \cf2 return \cf4 (\cf2 double\cf4 ) total / \cf5 reviews\cf4 .size();\
+    \}\
+\
+    \cf8 @Override\
+    \cf2 public \cf4 String \cf6 toString\cf4 () \{\
+        \cf2 return \cf5 lessonId \cf4 + \cf9 " | " \cf4 + \cf5 exerciseType \cf4 + \cf9 " | " \cf4 + \cf5 day \cf4 + \cf9 " | " \cf4 + \cf5 timeSlot\
+                \cf4 + \cf9 " | " \cf4 + \cf5 month \cf4 + \cf9 " | \'a3" \cf4 + \cf5 price \cf4 + \cf9 " | Spaces: "\
+                \cf4 + (\cf5 capacity \cf4 - \cf5 bookedMembers\cf4 .size()) + \cf9 "/" \cf4 + \cf5 capacity\cf4 ;\
+    \}\
+\}\
+}
